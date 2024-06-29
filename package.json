@@ -1,0 +1,15 @@
+{
+  "name": "ns_helloworld",
+  "main": "app/app.ts",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@nativescript/core": "~8.7.0",
+    "@nativescript/theme": "~3.0.2"
+  },
+  "devDependencies": {
+    "@nativescript/types": "~8.7.0",
+    "@nativescript/webpack": "~5.0.21",
+    "typescript": "~5.4.0"
+  }
+}
