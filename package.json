@@ -5,9 +5,11 @@
   "private": true,
   "dependencies": {
     "@nativescript/core": "~8.7.0",
-    "@nativescript/theme": "~3.0.2"
+    "@nativescript/theme": "~3.0.2",
+    "native-script-branch": "file:../../SDKs/native-script-branch-deep-links/packages/native-script-branch/native-script-branch-1.0.0.tgz"
   },
   "devDependencies": {
+    "@nativescript/android": "8.7.0",
     "@nativescript/types": "~8.7.0",
     "@nativescript/webpack": "~5.0.21",
     "typescript": "~5.4.0"
