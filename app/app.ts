@@ -4,35 +4,23 @@ You can use this file to perform app-level initialization, but the primary
 purpose of the file is to pass control to the app’s first module.
 */
 
-import { Application, AndroidApplication, Utils } from '@nativescript/core';
-import { NSBranchModule } from 'native-script-branch'
+import { Utils,Application, AndroidApplication, AndroidActivityBundleEventData, AndroidActivityEventData } from '@nativescript/core';
 
-// Ensure your app is set up correctly
-Application.on(Application.launchEvent, () => {
-    const context = Utils.android.getApplicationContext(); // Get Android application context
+import { NSBranch } from 'native-script-branch';
 
-    NSBranchModule.getAutoInstance(context)
-        .then(() => {
-            console.log('Branch autoInstance successfully initialized');
-        })
-        .catch((error) => {
-            console.error('Branch autoInstance initialization failed:', error);
-        });
+Application.on(Application.launchEvent, (args) => {
+  if (args.android) {
+    NSBranch.getAutoInstance(Utils.android.getApplicationContext());
+    NSBranch.enableLogging();
+  }
 });
-// Application.android.on(Application.android.activityStartedEvent, (args: any) => {
-//     const activity = args.activity;
-//     console.log("Activity started, initializing Branch session");
-//     NSBranchModule.sessionBuilder(activity)
-//         .then(() => {
-//             console.log("Branch session initialized successfully");
-//         })
-//         .catch((error) => {
-//             console.error("Branch session initialization failed:", error);
-//         });
-// });
-Application.run({ moduleName: 'app-root' })
 
-/*
-Do not place any code after the application has been started as it will not
-be executed on iOS.
-*/
+Application.android.on(AndroidApplication.activityStartedEvent, (args: AndroidActivityEventData) => {
+  const activity = args.activity as android.app.Activity;
+  const intent = activity.getIntent(); // Accessing the Intent
+  const uri = intent.getData(); // Assuming you want to get data URI from Intent
+
+  NSBranch.initSession(uri, activity);
+});
+
+Application.run({ moduleName: 'app-root' })

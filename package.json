@@ -6,7 +6,7 @@
   "dependencies": {
     "@nativescript/core": "~8.7.0",
     "@nativescript/theme": "~3.0.2",
-    "native-script-branch": "file:../../SDKs/native-script-branch-deep-links/packages/native-script-branch/native-script-branch-1.0.0.tgz"
+    "native-script-branch": "file:../../SDKs/native-script-branch-deep-links/packages/native-script-branch"
   },
   "devDependencies": {
     "@nativescript/android": "8.7.0",
